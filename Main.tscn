@@ -11,3 +11,5 @@ scale = Vector2( 0.36, 0.36 )
 z_index = 1
 
 [node name="HomeMap" parent="." instance=ExtResource( 1 )]
+
+[connection signal="plow" from="Player" to="HomeMap" method="_on_Player_plow"]
