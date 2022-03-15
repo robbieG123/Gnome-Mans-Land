@@ -1,0 +1,70 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Side3.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Right1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Walk2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Walk3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Characters/nobby/GnomeBack2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Right2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Right3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Side.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Characters/nobby/GnomeBack1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Walk1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Characters/nobby/Gnome2Side1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Characters/nobby/GnomeBack3.png" type="Texture" id=12]
+[ext_resource path="res://Player.gd" type="Script" id=13]
+[ext_resource path="res://InventoryContainer.tscn" type="PackedScene" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 37.0491
+height = 0.0
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 400, 280 )
+scale = Vector2( 0.44, 0.44 )
+script = ExtResource( 13 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.636362, 0.636362 )
+frames = SubResource( 1 )
+animation = "left"
+
+[node name="Inventory" parent="." instance=ExtResource( 14 )]
+visible = false
+margin_left = -804.545
+margin_top = -729.545
+margin_right = 1723.45
+margin_bottom = 1718.45
+rect_scale = Vector2( 1, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4.54535, 61.3636 )
+rotation = -0.0104289
+z_as_relative = false
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true

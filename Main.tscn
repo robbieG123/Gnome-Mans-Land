@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HomeMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 416, 448 )
+scale = Vector2( 0.36, 0.36 )
+z_index = 1
+
+[node name="HomeMap" parent="." instance=ExtResource( 1 )]
