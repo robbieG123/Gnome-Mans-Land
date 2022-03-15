@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Characters/nobby/Gnome2Side3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Characters/nobby/Gnome2Right1.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Assets/Characters/nobby/GnomeBack3.png" type="Texture" id=12]
 [ext_resource path="res://Player.gd" type="Script" id=13]
 [ext_resource path="res://InventoryContainer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Items/ItemArt/Iron Hoe.png" type="Texture" id=15]
+[ext_resource path="res://Equipped.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -52,7 +54,15 @@ scale = Vector2( 0.636362, 0.636362 )
 frames = SubResource( 1 )
 animation = "left"
 
-[node name="Inventory" parent="." instance=ExtResource( 14 )]
+[node name="Equipped" type="Sprite" parent="."]
+position = Vector2( -13.6364, 36.3637 )
+rotation = -1.5708
+scale = Vector2( 0.968396, 0.977274 )
+texture = ExtResource( 15 )
+flip_h = true
+script = ExtResource( 16 )
+
+[node name="PlayerInventory" parent="." instance=ExtResource( 14 )]
 visible = false
 margin_left = -804.545
 margin_top = -729.545
@@ -61,7 +71,7 @@ margin_bottom = 1718.45
 rect_scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -4.54535, 61.3636 )
+position = Vector2( -4.54547, 65.9091 )
 rotation = -0.0104289
 z_as_relative = false
 shape = SubResource( 2 )

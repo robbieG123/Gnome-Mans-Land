@@ -4,7 +4,6 @@ var velocity = Vector2()
 var speed
 
 func _physics_process(delta):
-	
 	$AnimatedSprite.playing = true
 	
 	if Input.is_action_pressed("move_right"):
@@ -47,6 +46,8 @@ func _physics_process(delta):
 		
 		var map = collision.collider.name
 		print (map)
+		
+	
 		
 
 	

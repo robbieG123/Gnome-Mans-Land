@@ -10,3 +10,4 @@ func _process(delta):
 		else:
 			self.visible = true;
 			open = true;
+			
