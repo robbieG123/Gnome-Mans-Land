@@ -3,10 +3,12 @@ extends KinematicBody2D
 signal plow(pos_x, pos_y)
 signal water(pos_x, pos_y)
 signal plant(pos_x, pos_y, plant)
+signal next_day()
 
 var velocity = Vector2()
 var speed
-
+var home_x = (100)
+var home_y = (100)
 
 func _physics_process(delta):
 	var sprite = $AnimatedSprite;
@@ -88,3 +90,9 @@ func _on_Equipped_plant(plant):
 	var x = pos[0];
 	var y = pos[1];
 	emit_signal("plant", x, y, plant);
+
+
+func _on_Hours_dayEnd():
+	position.x = home_x;
+	position.y = home_y;
+	emit_signal("next_day");

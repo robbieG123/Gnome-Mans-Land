@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Label.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Minecraft.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Hours.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="Hours" type="Node2D"]
+position = Vector2( 512, 303 )
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -127.0
+margin_top = -54.0
+margin_right = 237.0
+margin_bottom = 84.0
+rect_scale = Vector2( 0.72, 0.800001 )
+color = Color( 0.313726, 0.772549, 0.878431, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -246.0
+margin_top = -139.0
+margin_right = -119.0
+margin_bottom = -65.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="dayEnd" from="Label" to="." method="_on_Label_dayEnd"]
+[connection signal="timeout" from="Timer" to="Label" method="_on_Timer_timeout"]
