@@ -79,4 +79,6 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
+[connection signal="plant" from="Equipped" to="." method="_on_Equipped_plant"]
 [connection signal="plow" from="Equipped" to="." method="_on_Equipped_plow"]
+[connection signal="water" from="Equipped" to="." method="_on_Equipped_water"]

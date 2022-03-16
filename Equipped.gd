@@ -3,6 +3,7 @@ extends Sprite
 var inventory = preload("res://Inventory.tres")
 signal plow()
 signal water()
+signal plant(plant)
 
 
 func _physics_process(_delta):
@@ -31,11 +32,13 @@ func _physics_process(_delta):
 			flip_h = true;
 			
 		if (Input.is_action_pressed("use_item")):
+			
+			
 			if (currentItem.name == "Hoe"):
-				print ("hoe!");
 				emit_signal("plow");
 			elif (currentItem.name == "WateringCan"):
-				print ("can!");
 				emit_signal("water");
+			elif (currentItem.name == "CarrotSeeds"):
+				emit_signal("plant", "carrot");
 	else:
 		texture = null;
