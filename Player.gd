@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 signal plow(pos_x, pos_y)
 signal water(pos_x, pos_y)
+signal scythe(pos_x, pos_y)
 signal plant(pos_x, pos_y, plant)
+signal pick_up(plant)
 signal next_day()
 
 var velocity = Vector2()
@@ -92,7 +94,18 @@ func _on_Equipped_plant(plant):
 	emit_signal("plant", x, y, plant);
 
 
-func _on_Hours_dayEnd():
+func _on_Day_next_day():
 	position.x = home_x;
 	position.y = home_y;
 	emit_signal("next_day");
+
+
+func _on_Equipped_scythe():
+	var pos = _get_position();
+	var x = pos[0];
+	var y = pos[1];
+	emit_signal("scythe", x, y);
+
+
+func _on_HomeMap_pick_up(plant):
+	emit_signal("pick_up", plant)

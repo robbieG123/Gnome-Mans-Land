@@ -1,6 +1,7 @@
 extends TextureRect
 
 var open = false;
+signal add_to_inventory(item)
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory_open"):
@@ -11,3 +12,8 @@ func _process(delta):
 			self.visible = true;
 			open = true;
 			
+
+
+func _on_Player_pick_up(plant):
+	emit_signal("add_to_inventory", plant)
+	

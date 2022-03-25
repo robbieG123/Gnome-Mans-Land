@@ -14,6 +14,9 @@ position = Vector2( 101, 102 )
 scale = Vector2( 0.36, 0.36 )
 z_index = 1
 
+[connection signal="pick_up" from="HomeMap" to="Player" method="_on_HomeMap_pick_up"]
+[connection signal="next_day" from="Player" to="HomeMap" method="_on_Player_next_day"]
 [connection signal="plant" from="Player" to="HomeMap" method="_on_Player_plant"]
 [connection signal="plow" from="Player" to="HomeMap" method="_on_Player_plow"]
+[connection signal="scythe" from="Player" to="HomeMap" method="_on_Player_scythe"]
 [connection signal="water" from="Player" to="HomeMap" method="_on_Player_water"]

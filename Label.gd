@@ -1,6 +1,6 @@
 extends Label
 
-signal dayEnd();
+signal next_day();
 
 var hour = 9;
 func _ready():
@@ -8,10 +8,11 @@ func _ready():
 
 func _on_Timer_timeout():
 	
-	print ("recieved");
 	var showHour = String(hour);
-	text = (showHour + ':00');			
-	print ("increase!");
+	text = (showHour + ':00');		
+	if (hour == 0):
+		emit_signal('next_day');
+		hour = 6;
 	if (hour < 23):
 		hour = hour +1
 	else:

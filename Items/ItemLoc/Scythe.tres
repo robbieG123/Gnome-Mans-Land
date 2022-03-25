@@ -8,3 +8,4 @@ script = ExtResource( 1 )
 name = "Scythe"
 texture = ExtResource( 2 )
 type = "Tool"
+quantity = 1

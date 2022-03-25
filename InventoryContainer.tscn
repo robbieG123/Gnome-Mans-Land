@@ -26,3 +26,5 @@ margin_left = 701.0
 margin_top = 480.0
 margin_right = 957.0
 margin_bottom = 736.0
+
+[connection signal="add_to_inventory" from="." to="CenterContainer/InventoryDisplay" method="_on_InventoryContainer_add_to_inventory"]
