@@ -42,4 +42,5 @@ func _on_HomeMap_harvest_map(x, y):
 	if get_cell(x, y) == 2:	#carrot!
 		set_cell(x, y, -1)
 		emit_signal("harvested", "Carrot")
+			
 

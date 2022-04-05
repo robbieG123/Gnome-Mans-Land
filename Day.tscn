@@ -28,3 +28,4 @@ valign = 1
 script = ExtResource( 2 )
 
 [connection signal="next_day" from="." to="ColorRect/Label" method="_on_Day_next_day"]
+[connection signal="sleep_time" from="." to="ColorRect/Label" method="_on_Day_sleep_time"]

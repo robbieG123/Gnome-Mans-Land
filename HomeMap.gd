@@ -9,7 +9,9 @@ signal pick_up(plant);
 var watered = []
 
 func _on_Player_plow(pos_x, pos_y):
-	set_cell (pos_x, pos_y, 4);
+	var tile = get_cell(pos_x, pos_y)
+	if tile != 1:
+		set_cell (pos_x, pos_y, 4);
 
 
 func _on_Player_water(pos_x, pos_y):
@@ -26,7 +28,7 @@ func _on_Player_plant(pos_x, pos_y, plant):
 		emit_signal("plant_map", pos_x, pos_y, plant);
 
 
-func _on_Player_next_day():
+func _on_Player_next_day(bed):
 	emit_signal("grow", watered);
 	var n = 0;
 	while (n+1) < watered.size():
