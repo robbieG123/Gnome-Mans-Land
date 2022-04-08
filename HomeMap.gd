@@ -4,6 +4,7 @@ signal plant_map(x, y, plant);
 signal harvest_map(x, y);
 signal grow(watered);
 signal pick_up(plant);
+signal remove_seed(plant)
 
 
 var watered = []
@@ -47,3 +48,7 @@ func _on_Player_scythe(pos_x, pos_y):
 
 func _on_PlantedPlants_harvested(plant):
 	emit_signal("pick_up", plant)
+
+
+func _on_PlantedPlants_remove_seed(plant):
+	emit_signal("remove_seed", plant)

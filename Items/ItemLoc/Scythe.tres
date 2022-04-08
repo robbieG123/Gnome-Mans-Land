@@ -9,3 +9,4 @@ name = "Scythe"
 texture = ExtResource( 2 )
 type = "Tool"
 quantity = 1
+price = 1

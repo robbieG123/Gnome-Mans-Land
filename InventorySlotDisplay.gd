@@ -1,14 +1,17 @@
 extends CenterContainer
 
 var inventory = preload("res://Inventory.tres")
+signal item_quantity(quantity)
 
 onready var itemTextureRect = $ItemTextureRect
 
 func display_item(item):
-	if item is Item:
+	if item is Item && item.quantity > 0:
 		itemTextureRect.texture = item.texture	
+		emit_signal("item_quantity", item.quantity)
 	else:
 		itemTextureRect.texture = load("res://Assets/Items/empty.png")
+		emit_signal("item_quantity", 0)
 		
 func get_drag_data(_position):
 	var item_index = get_index()

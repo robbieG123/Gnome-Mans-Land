@@ -5,6 +5,7 @@ signal plow()
 signal water()
 signal scythe()
 signal plant(plant)
+signal update_inventory()
 
 
 func _physics_process(_delta):
@@ -37,14 +38,43 @@ func _physics_process(_delta):
 				emit_signal("plow");
 			elif (currentItem.name == "WateringCan"):
 				emit_signal("water");
-			elif (currentItem.name == "CarrotSeeds"):
+			elif (currentItem.name == "CarrotSeeds" && currentItem.quantity > 0):
 				print ("carrot plant")
 				emit_signal("plant", "carrot");
+			elif (currentItem.name == "PotatoSeeds" && currentItem.quantity > 0):
+				print ("potato plant")
+				emit_signal("plant", "potato");
+			elif (currentItem.name == "TomatoSeeds" && currentItem.quantity > 0):
+				print ("tomato plant")
+				emit_signal("plant", "tomato");
 			elif (currentItem.name == "Scythe"):
 				print ("Scythe")
 				emit_signal("scythe");
 	else:
 		texture = null;
 
-	
+func _on_Player_remove_seed(plant):
+	var seedToRemove
+	var i = 0
+	if plant == 'carrot':
+		print ("carrot remove")
+		seedToRemove = 'CarrotSeeds'
+	elif plant == 'potato':
+		print ("potato remove")
+		seedToRemove = 'PotatoSeeds'
+	elif plant == 'tomato':
+		print ("tomato remove")
+		seedToRemove = 'TomatoSeeds'
 		
+	while i < inventory.items.size():
+		if inventory.items[i] != null:
+			if inventory.items[i].name == seedToRemove:
+				print ("decrease!")
+				inventory.items[i].quantity -= 1
+		i += 1
+	emit_signal("update_inventory")
+		
+
+
+func _on_ShopContainer_buy_item(item):
+	pass # Replace with function body.

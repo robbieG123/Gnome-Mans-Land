@@ -13,7 +13,7 @@ func _on_Player_next_day(bed):
 	else:
 		emit_signal("stayed_up")
 	var t = Timer.new()
-	t.set_wait_time(3)
+	t.set_wait_time(7)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()

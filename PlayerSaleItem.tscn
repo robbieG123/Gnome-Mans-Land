@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://PlayerSaleItem.gd" type="Script" id=1]
+[ext_resource path="res://SellButton.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Minecraft.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[node name="PlayerSaleItem" type="ColorRect"]
+margin_left = 10.0
+margin_top = 226.0
+margin_right = 1010.0
+margin_bottom = 326.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.313726, 0.772549, 0.878431, 1 )
+script = ExtResource( 1 )
+
+[node name="ItemTextureRect" type="TextureRect" parent="."]
+margin_left = 30.0
+margin_top = 21.0
+margin_right = 94.0
+margin_bottom = 85.0
+
+[node name="itemName" type="Label" parent="."]
+margin_left = 137.0
+margin_top = 43.0
+margin_right = 196.0
+margin_bottom = 61.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = SubResource( 1 )
+
+[node name="itemPrice" type="Label" parent="."]
+margin_left = 315.0
+margin_top = 44.0
+margin_right = 338.0
+margin_bottom = 79.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 368.0
+margin_top = 45.0
+margin_right = 408.0
+margin_bottom = 85.0
+script = ExtResource( 3 )
+
+[connection signal="sell_item" from="TextureButton" to="." method="_on_TextureButton_sell_item"]

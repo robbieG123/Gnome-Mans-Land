@@ -6,7 +6,7 @@ func _ready():
 func _on_CoverCamera_stayed_up():
 	visible = true;
 	var t = Timer.new()
-	t.set_wait_time(3)
+	t.set_wait_time(7)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()

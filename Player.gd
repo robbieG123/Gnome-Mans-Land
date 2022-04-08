@@ -6,6 +6,9 @@ signal scythe(pos_x, pos_y)
 signal plant(pos_x, pos_y, plant)
 signal pick_up(plant)
 signal next_day(bed)
+signal remove_seed(plant)
+
+onready var shop = $ShopContainer
 
 var velocity = Vector2()
 var speed
@@ -41,11 +44,14 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("move_left"):
 		sprite.animation = "left"
 	
+	if Input.is_action_just_pressed("interact") && shop.visible == true:
+				shop.visible = false
 	
 	if velocity.y == 0 && velocity.x == 0:
 		sprite.playing = false
 		
-		
+	if Input.is_action_just_pressed("escape"):
+		shop.visible = false	
 		
 	if Input.is_action_pressed("sprint"):
 		speed = 400.0
@@ -61,10 +67,23 @@ func _physics_process(delta):
 			var collision = get_slide_collision(index)
 			var map = collision.collider.name
 			print (map)
-			if Input.is_action_just_pressed("interact") && map == "HomeDoor":
+			if Input.is_action_just_pressed("interact"):
+				print ("interact")
+			if Input.is_action_just_pressed("interact") && map == "Home":
 				position.x = home_x;
 				position.y = home_y;
 				emit_signal("next_day", "yes");
+			if Input.is_action_just_pressed("interact"):
+				if map == "ShopDoor" || map == "Shop":
+					print ("wee guy")
+					shop.update_sale()
+					print ("wee guy 2")
+					shop.visible = true
+					print ("wee guy 3")
+						
+				
+			
+	
 
 
 
@@ -114,3 +133,7 @@ func _on_Equipped_scythe():
 func _on_HomeMap_pick_up(plant):
 	emit_signal("pick_up", plant)
 
+
+
+func _on_HomeMap_remove_seed(plant):
+	emit_signal("remove_seed", plant)

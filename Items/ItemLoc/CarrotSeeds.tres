@@ -8,4 +8,5 @@ script = ExtResource( 1 )
 name = "CarrotSeeds"
 texture = ExtResource( 2 )
 type = "Seed"
-quantity = 1
+quantity = 10
+price = 3

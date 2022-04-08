@@ -1,7 +1,12 @@
 extends TextureRect
 
 var open = false;
-signal add_to_inventory(item)
+signal edit_inventory(item, editType)
+signal remove_from_inventory(item)
+signal update_inventory()
+signal edit_coins(coins, editType)
+
+var current_coins = 25
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory_open"):
@@ -15,5 +20,22 @@ func _process(delta):
 
 
 func _on_Player_pick_up(plant):
-	emit_signal("add_to_inventory", plant)
+	emit_signal("edit_inventory", plant, "add")
 	
+
+
+func _on_Equipped_update_inventory():
+	emit_signal("update_inventory")
+
+
+func _on_ShopContainer_buy_item(item):
+	if current_coins - item.price > 0:
+		emit_signal("edit_coins", item.price, "remove")
+		emit_signal("edit_inventory", item.name, "add")
+		current_coins -= item.price
+
+
+func _on_ShopContainer_sell_item(item):
+	emit_signal('edit_coins', item.price, "add")
+	emit_signal("edit_inventory", item.name, "remove")
+	current_coins += item.price
