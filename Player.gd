@@ -7,6 +7,7 @@ signal plant(pos_x, pos_y, plant)
 signal pick_up(plant)
 signal next_day(bed)
 signal remove_seed(plant)
+signal speak(character, quest)
 
 onready var shop = $ShopContainer
 
@@ -14,6 +15,9 @@ var velocity = Vector2()
 var speed
 var home_x = (100)
 var home_y = (100)
+var barryQuest = 0
+var egbertQuest = 0
+var annieQuest = 0
 
 func _physics_process(delta):
 	var sprite = $AnimatedSprite;
@@ -80,6 +84,13 @@ func _physics_process(delta):
 					print ("wee guy 2")
 					shop.visible = true
 					print ("wee guy 3")
+			if Input.is_action_just_pressed("interact") && map == "Barry":
+				print ("get shagged")
+				emit_signal('speak', 'Barry', barryQuest)
+			if Input.is_action_just_pressed("interact") && map == "Egbert":
+				emit_signal('speak', 'Egbert', egbertQuest)
+			if Input.is_action_just_pressed("interact") && map == "Annie":
+				emit_signal('speak', 'Annie', annieQuest)
 						
 				
 			

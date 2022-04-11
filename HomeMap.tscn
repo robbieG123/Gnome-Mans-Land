@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Tiles/tilemap.png" type="Texture" id=1]
 [ext_resource path="res://HomeMap.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Assets/Plants/potatoPlant2.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Plants/tomatoPlant2.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Plants/potatoPlant1.png" type="Texture" id=15]
+[ext_resource path="res://Paths.tscn" type="PackedScene" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "water"
@@ -453,6 +454,8 @@ tile_set = SubResource( 19 )
 cell_size = Vector2( 12, 12 )
 format = 1
 tile_data = PoolIntArray( -65323, 0, 0 )
+
+[node name="Node2D" parent="." instance=ExtResource( 16 )]
 
 [connection signal="grow" from="." to="PlantedPlants" method="_on_HomeMap_grow"]
 [connection signal="harvest_map" from="." to="PlantedPlants" method="_on_HomeMap_harvest_map"]
