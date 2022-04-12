@@ -81,3 +81,15 @@ func _on_InventoryContainer_edit_inventory(item, editType):
 				update_inventory_display();
 				return
 			t = t+1
+			
+func _check_inventory(item, quantity):
+	var i = 0
+	while i < inventory.items.size():
+		if inventory.items[i] != null:
+			if inventory.items[i].name == item:
+				print ("present!")
+				if inventory.items[i].quantity >= quantity:
+					print ("enough")
+					return true
+		i += 1
+	return false

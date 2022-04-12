@@ -5,7 +5,9 @@ signal harvest_map(x, y);
 signal grow(watered);
 signal pick_up(plant);
 signal remove_seed(plant)
+signal speak(character)
 
+onready var paths = $Node2D
 
 var watered = []
 
@@ -52,3 +54,15 @@ func _on_PlantedPlants_harvested(plant):
 
 func _on_PlantedPlants_remove_seed(plant):
 	emit_signal("remove_seed", plant)
+
+
+func _on_Player_speak(character, quest):
+	$Node2D/Path1/CharacterFollower2D.runSpeed = 0
+	$Node2D/Path2/CharacterFollower2D.runSpeed = 0
+	$Node2D/Path3/CharacterFollower2D.runSpeed = 0
+
+
+func _on_Player_finished_speech():
+	$Node2D/Path1/CharacterFollower2D.runSpeed = 80
+	$Node2D/Path2/CharacterFollower2D.runSpeed = 80
+	$Node2D/Path3/CharacterFollower2D.runSpeed = 80

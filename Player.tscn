@@ -186,3 +186,4 @@ rect_scale = Vector2( 2, 2 )
 [connection signal="stayed_up" from="Camera2D/CoverCamera" to="Camera2D/CoverCamera/StayedUp" method="_on_CoverCamera_stayed_up"]
 [connection signal="buy_item" from="ShopContainer" to="PlayerInventory" method="_on_ShopContainer_buy_item"]
 [connection signal="sell_item" from="ShopContainer" to="PlayerInventory" method="_on_ShopContainer_sell_item"]
+[connection signal="finished_speech" from="DialogueBox" to="." method="_on_DialogueBox_finished_speech"]

@@ -8,6 +8,7 @@ signal pick_up(plant)
 signal next_day(bed)
 signal remove_seed(plant)
 signal speak(character, quest)
+signal finished_speech()
 
 onready var shop = $ShopContainer
 
@@ -18,6 +19,7 @@ var home_y = (100)
 var barryQuest = 0
 var egbertQuest = 0
 var annieQuest = 0
+var test = true
 
 func _physics_process(delta):
 	var sprite = $AnimatedSprite;
@@ -85,8 +87,16 @@ func _physics_process(delta):
 					shop.visible = true
 					print ("wee guy 3")
 			if Input.is_action_just_pressed("interact") && map == "Barry":
-				print ("get shagged")
-				emit_signal('speak', 'Barry', barryQuest)
+				if barryQuest == 4 && $PlayerInventory/CenterContainer/InventoryDisplay._check_inventory("Carrot", 8):
+					barryQuest = 10
+					emit_signal('speak', 'Barry', barryQuest)
+					barryQuest = 12
+				elif barryQuest == 0:
+					emit_signal('speak', 'Barry', barryQuest)
+					barryQuest = 4
+				else:
+					emit_signal('speak', 'Barry', barryQuest)
+				
 			if Input.is_action_just_pressed("interact") && map == "Egbert":
 				emit_signal('speak', 'Egbert', egbertQuest)
 			if Input.is_action_just_pressed("interact") && map == "Annie":
@@ -148,3 +158,7 @@ func _on_HomeMap_pick_up(plant):
 
 func _on_HomeMap_remove_seed(plant):
 	emit_signal("remove_seed", plant)
+
+
+func _on_DialogueBox_finished_speech():
+	emit_signal("finished_speech")
