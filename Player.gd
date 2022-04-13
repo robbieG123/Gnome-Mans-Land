@@ -11,6 +11,7 @@ signal speak(character, quest)
 signal finished_speech()
 
 onready var shop = $ShopContainer
+onready var inventory = $PlayerInventory/CenterContainer/InventoryDisplay
 
 var velocity = Vector2()
 var speed
@@ -87,11 +88,15 @@ func _physics_process(delta):
 					shop.visible = true
 					print ("wee guy 3")
 			if Input.is_action_just_pressed("interact") && map == "Barry":
-				if barryQuest == 4 && $PlayerInventory/CenterContainer/InventoryDisplay._check_inventory("Carrot", 8):
+				if barryQuest == 4 && inventory._check_inventory("Carrot", 8):
 					barryQuest = 10
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 12
-				elif barryQuest == 0:
+				elif barryQuest == 12 && inventory._check_inventory("Carrot", 5) && inventory._check_inventory("Potato", 5) && inventory._check_inventory("Tomato", 5) || test == true:
+					barryQuest = 13
+					emit_signal('speak', 'Barry', barryQuest)
+					barryQuest = 19
+				elif barryQuest == 1:
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 4
 				else:

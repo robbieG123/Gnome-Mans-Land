@@ -54,8 +54,26 @@ func _on_Player_speak(character, quest):
 			repeat = true
 		elif quest == 12:
 			speech = "Come back to me once you have 5 Tomato's, 5 Potato's and 5 Carrots. Now leave me alone, I've got business to attend to"
-		
-	
+		elif quest == 13:
+			speech = "I'm very impressed! you truly are your fathers son. Me and him were the best potato farmers this village had ever seen. Maybe our title will be taken from us by you!"
+			repeat = true
+		elif quest == 14:
+			speech = "You might be wondering about the giant trees that surround us. Or as the human's call them, 'trees'. None of us ever enter those woods as there's all sorts of creatures that dwell within"
+			repeat = true
+		elif quest == 15:
+			speech = "John got swept away by the current once and had to make his way back through the giant trees. 4 days he was gone. once he returned he spoke of goblins and spiders. Hasn't been the same since"
+			repeat = true
+		elif quest == 16:
+			speech = "Now he spends his time strolling the beach but never goes in the water in case he's swept away again..."
+			repeat = true
+		elif quest == 17:
+			speech = "But I'm sure it was all his mind playing tricks on him. The goblins haven't been seen for centuries. Ever since the human's wiped them out in the great war."
+			repeat = true
+		elif quest == 18:
+			speech = "If you want to learn more about gnome lore I recommend you speak to Finkle. He's the oldest out of all of us and has remembered countless stories of days past."
+			repeat = true
+		elif quest == 19:
+			speech = "I have another farming challenge for you. Bring me 50 of each crop and I'll reward you handsomely."
 	
 	elif character == 'Egbert':
 		if quest == 0:
