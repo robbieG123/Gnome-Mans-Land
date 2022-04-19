@@ -52,7 +52,7 @@ RestHandler="*res://addons/github-integration/scripts/RestHandler.gd"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

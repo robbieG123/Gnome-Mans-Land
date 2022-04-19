@@ -28,6 +28,11 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "right",
@@ -36,11 +41,6 @@ animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 5 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 10 ) ],
@@ -154,19 +154,19 @@ align = 1
 autowrap = true
 script = ExtResource( 22 )
 
-[node name="ShopContainer" parent="." instance=ExtResource( 23 )]
+[node name="ShopContainer" parent="Camera2D" instance=ExtResource( 23 )]
 visible = false
-margin_left = -890.909
-margin_top = -688.636
-margin_right = -890.909
-margin_bottom = -688.636
+margin_left = -1143.18
+margin_top = -729.545
+margin_right = -1143.18
+margin_bottom = -729.545
 rect_scale = Vector2( 2.24944, 2.5 )
 
-[node name="DialogueBox" parent="." instance=ExtResource( 25 )]
-margin_left = -745.455
-margin_top = 243.182
-margin_right = 254.545
-margin_bottom = 443.182
+[node name="DialogueBox" parent="Camera2D" instance=ExtResource( 25 )]
+margin_left = -997.728
+margin_top = 202.273
+margin_right = 2.27203
+margin_bottom = 402.273
 rect_scale = Vector2( 2, 2 )
 
 [connection signal="next_day" from="." to="Camera2D/Day" method="_on_Player_next_day"]
@@ -174,7 +174,7 @@ rect_scale = Vector2( 2, 2 )
 [connection signal="next_day" from="." to="Camera2D/CoverCamera" method="_on_Player_next_day"]
 [connection signal="pick_up" from="." to="PlayerInventory" method="_on_Player_pick_up"]
 [connection signal="remove_seed" from="." to="Equipped" method="_on_Player_remove_seed"]
-[connection signal="speak" from="." to="DialogueBox" method="_on_Player_speak"]
+[connection signal="speak" from="." to="Camera2D/DialogueBox" method="_on_Player_speak"]
 [connection signal="plant" from="Equipped" to="." method="_on_Equipped_plant"]
 [connection signal="plow" from="Equipped" to="." method="_on_Equipped_plow"]
 [connection signal="scythe" from="Equipped" to="." method="_on_Equipped_scythe"]
@@ -185,6 +185,6 @@ rect_scale = Vector2( 2, 2 )
 [connection signal="next_day" from="Camera2D/Hours" to="Camera2D/Day" method="_on_Hours_next_day"]
 [connection signal="slept_in_bed" from="Camera2D/CoverCamera" to="Camera2D/CoverCamera/SleptInBed" method="_on_CoverCamera_slept_in_bed"]
 [connection signal="stayed_up" from="Camera2D/CoverCamera" to="Camera2D/CoverCamera/StayedUp" method="_on_CoverCamera_stayed_up"]
-[connection signal="buy_item" from="ShopContainer" to="PlayerInventory" method="_on_ShopContainer_buy_item"]
-[connection signal="sell_item" from="ShopContainer" to="PlayerInventory" method="_on_ShopContainer_sell_item"]
-[connection signal="finished_speech" from="DialogueBox" to="." method="_on_DialogueBox_finished_speech"]
+[connection signal="buy_item" from="Camera2D/ShopContainer" to="PlayerInventory" method="_on_ShopContainer_buy_item"]
+[connection signal="sell_item" from="Camera2D/ShopContainer" to="PlayerInventory" method="_on_ShopContainer_sell_item"]
+[connection signal="finished_speech" from="Camera2D/DialogueBox" to="." method="_on_DialogueBox_finished_speech"]

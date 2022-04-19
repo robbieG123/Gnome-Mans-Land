@@ -10,7 +10,7 @@ signal remove_seed(plant)
 signal speak(character, quest)
 signal finished_speech()
 
-onready var shop = $ShopContainer
+onready var shop = $Camera2D/ShopContainer
 onready var inventory = $PlayerInventory/CenterContainer/InventoryDisplay
 
 var velocity = Vector2()
@@ -76,12 +76,12 @@ func _physics_process(delta):
 			print (map)
 			if Input.is_action_just_pressed("interact"):
 				print ("interact")
-			if Input.is_action_just_pressed("interact") && map == "Home":
+			if Input.is_action_just_pressed("interact") && map == "HomeBody":
 				position.x = home_x;
 				position.y = home_y;
 				emit_signal("next_day", "yes");
 			if Input.is_action_just_pressed("interact"):
-				if map == "ShopDoor" || map == "Shop":
+				if map == "ShopBody":
 					print ("wee guy")
 					shop.update_sale()
 					print ("wee guy 2")

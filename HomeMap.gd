@@ -11,23 +11,26 @@ onready var paths = $Node2D
 
 var watered = []
 
+var plowedTile = 9
+var wetPlowedTile = 10
+
 func _on_Player_plow(pos_x, pos_y):
 	var tile = get_cell(pos_x, pos_y)
 	if tile != 1:
-		set_cell (pos_x, pos_y, 4);
+		set_cell (pos_x, pos_y, plowedTile);
 
 
 func _on_Player_water(pos_x, pos_y):
 	var tile_index = get_cell(pos_x, pos_y);
-	if (tile_index == 4):
-		set_cell (pos_x, pos_y, 3);
+	if (tile_index == plowedTile):
+		set_cell (pos_x, pos_y, wetPlowedTile);
 		watered.append(pos_x);
 		watered.append(pos_y);
 	
 
 func _on_Player_plant(pos_x, pos_y, plant):
 	var tile_index = get_cell(pos_x, pos_y);
-	if (tile_index == 4 || tile_index == 3):
+	if (tile_index == plowedTile || tile_index == wetPlowedTile):
 		emit_signal("plant_map", pos_x, pos_y, plant);
 
 
@@ -37,14 +40,14 @@ func _on_Player_next_day(bed):
 	while (n+1) < watered.size():
 		var x = watered[n]
 		var y = watered[n+1]
-		set_cell (x, y, 4);
+		set_cell (x, y, plowedTile);
 		n = n+2
 	watered.clear()
 
 
 func _on_Player_scythe(pos_x, pos_y):
 	var tile_index = get_cell(pos_x, pos_y);
-	if (tile_index == 4 || tile_index == 3):
+	if (tile_index == plowedTile || tile_index == wetPlowedTile):
 		emit_signal("harvest_map", pos_x, pos_y);
 
 
