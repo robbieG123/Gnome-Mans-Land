@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FootstepGrass02.wav-87b58524eea4ed4fdc598dff50364a99.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Nature Sounds Pack/Footstep/FootstepGrass02.wav"
+dest_files=[ "res://.import/FootstepGrass02.wav-87b58524eea4ed4fdc598dff50364a99.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

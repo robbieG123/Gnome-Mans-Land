@@ -9,9 +9,12 @@ signal next_day(bed)
 signal remove_seed(plant)
 signal speak(character, quest)
 signal finished_speech()
+signal bridge()
+signal remove_egg()
+signal next_hour()
 
 onready var shop = $Camera2D/ShopContainer
-onready var inventory = $PlayerInventory/CenterContainer/InventoryDisplay
+onready var inventory = $Inventory/PlayerInventory/CenterContainer/InventoryDisplay
 
 var velocity = Vector2()
 var speed
@@ -20,6 +23,7 @@ var home_y = (100)
 var barryQuest = 0
 var egbertQuest = 0
 var annieQuest = 0
+var finkleQuest = 0
 var test = true
 
 func _physics_process(delta):
@@ -52,13 +56,21 @@ func _physics_process(delta):
 		sprite.animation = "left"
 	
 	if Input.is_action_just_pressed("interact") && shop.visible == true:
-				shop.visible = false
+		shop.visible = false
+		
+	if Input.is_action_just_pressed("escape"):
+		$Camera2D.current = true
 	
 	if velocity.y == 0 && velocity.x == 0:
 		sprite.playing = false
+	else:
+		if $Audio/Walk.playing == false:
+			$Audio/Walk.play()
+			
 		
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("interact") && shop.visible == true:
 		shop.visible = false	
+
 		
 	if Input.is_action_pressed("sprint"):
 		speed = 400.0
@@ -81,31 +93,85 @@ func _physics_process(delta):
 				position.y = home_y;
 				emit_signal("next_day", "yes");
 			if Input.is_action_just_pressed("interact"):
-				if map == "ShopBody":
-					print ("wee guy")
+				if shop.visible == true:
+					shop.visible = false
+				elif map == "ShopBody":
 					shop.update_sale()
-					print ("wee guy 2")
 					shop.visible = true
-					print ("wee guy 3")
-			if Input.is_action_just_pressed("interact") && map == "Barry":
+			if Input.is_action_just_pressed("interact") && map == "Egg":
+				$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'add')
+				emit_signal('remove_egg')	
+					#NPC Interactions
+			if Input.is_action_just_pressed("interact") && map == "Barry": #Barry Quest Checker
 				if barryQuest == 4 && inventory._check_inventory("Carrot", 8):
 					barryQuest = 10
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 12
-				elif barryQuest == 12 && inventory._check_inventory("Carrot", 5) && inventory._check_inventory("Potato", 5) && inventory._check_inventory("Tomato", 5) || test == true:
+				elif barryQuest == 12 && inventory._check_inventory("Carrot", 5) && inventory._check_inventory("Potato", 5) && inventory._check_inventory("Tomato", 5):
 					barryQuest = 13
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 19
-				elif barryQuest == 1:
+				elif barryQuest == 4:
+					emit_signal('speak', 'Barry', barryQuest)
+				elif barryQuest == 0:
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 4
 				else:
 					emit_signal('speak', 'Barry', barryQuest)
+				$Audio/Barry.play()
 				
-			if Input.is_action_just_pressed("interact") && map == "Egbert":
-				emit_signal('speak', 'Egbert', egbertQuest)
-			if Input.is_action_just_pressed("interact") && map == "Annie":
-				emit_signal('speak', 'Annie', annieQuest)
+			if Input.is_action_just_pressed("interact") && map == "Egbert": #Egbert Quest Checker
+				if egbertQuest == 0:
+					emit_signal('speak', 'Egbert', egbertQuest)
+					egbertQuest = 1
+				elif egbertQuest == 1:
+					emit_signal('speak', 'Egbert', egbertQuest)
+					egbertQuest = 3
+				elif egbertQuest == 3:
+					if inventory._check_inventory("Egg", 1):
+						egbertQuest = 4
+						emit_signal('speak', 'Egbert', egbertQuest)
+						$Camera2D/Coins/CoinsLabel.coins += 50
+						$Camera2D/Coins/CoinsLabel.update_coins()
+						$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'remove')
+					else:
+						emit_signal('speak', 'Egbert', egbertQuest)
+				$Audio/Egbert.play()
+				
+				
+			if Input.is_action_just_pressed("interact") && map == "Annie": #Annie Quest Checker
+				if annieQuest == 0:
+					emit_signal('speak', 'Annie', annieQuest)
+					annieQuest = 1
+				elif annieQuest == 1:
+					emit_signal('speak', 'Annie', annieQuest)
+					annieQuest = 6
+				elif annieQuest == 6:
+					if $Camera2D/Coins/CoinsLabel.coins > 15:
+						emit_signal('speak', 'Annie', 7)
+						$Camera2D/Coins/CoinsLabel.coins -= 15
+						$Camera2D/Coins/CoinsLabel.update_coins()
+						emit_signal('bridge')
+						annieQuest = 8
+					else:
+						emit_signal('speak', 'Annie', annieQuest)
+				$Audio/Annie.play()
+				
+			if Input.is_action_just_pressed("interact") && map == "Finkle": #Annie Quest Checker
+				if finkleQuest == 0:
+					emit_signal('speak', 'Finkle', finkleQuest)
+					finkleQuest = 2
+				elif finkleQuest == 2:
+					emit_signal('speak', 'Finkle', finkleQuest)
+					finkleQuest = 8
+				elif finkleQuest == 8:
+					emit_signal('speak', 'Finkle', finkleQuest)
+					finkleQuest = 14
+				elif finkleQuest == 14:
+					emit_signal('speak', 'Finkle', finkleQuest)
+				else:
+					emit_signal('speak', 'Finkle', finkleQuest)
+				$Audio/Finkle.play()
 						
 				
 			
@@ -127,13 +193,15 @@ func _on_Equipped_plow():
 	var x = pos[0];
 	var y = pos[1];
 	emit_signal("plow", x, y);
-
+	$Audio/Plow.play()
 
 func _on_Equipped_water():
 	var pos = _get_position();
 	var x = pos[0];
 	var y = pos[1];
 	emit_signal("water", x, y);	
+	if $Audio/Water.playing == false:
+			$Audio/Water.play()
 
 
 func _on_Equipped_plant(plant):
@@ -141,6 +209,8 @@ func _on_Equipped_plant(plant):
 	var x = pos[0];
 	var y = pos[1];
 	emit_signal("plant", x, y, plant);
+	if $Audio/Planting.playing == false:
+			$Audio/Planting.play()
 
 
 func _on_Day_next_day(bed):
@@ -167,3 +237,10 @@ func _on_HomeMap_remove_seed(plant):
 
 func _on_DialogueBox_finished_speech():
 	emit_signal("finished_speech")
+
+
+func _on_Hours_next_hour():
+	emit_signal('next_hour')
+
+
+

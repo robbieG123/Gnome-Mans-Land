@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Plow.mp3-28d9ae83b11bc836f61bb50d668f72df.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Nature Sounds Pack/Plow.mp3"
+dest_files=[ "res://.import/Plow.mp3-28d9ae83b11bc836f61bb50d668f72df.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

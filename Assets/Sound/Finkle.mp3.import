@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Finkle.mp3-54de2657f62d122bfee71ec2e6980ae8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Finkle.mp3"
+dest_files=[ "res://.import/Finkle.mp3-54de2657f62d122bfee71ec2e6980ae8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

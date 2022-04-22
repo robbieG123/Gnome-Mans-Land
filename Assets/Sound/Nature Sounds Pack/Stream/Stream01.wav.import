@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Stream01.wav-e19d7b7a6a552a8e100d61059727b7a9.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Nature Sounds Pack/Stream/Stream01.wav"
+dest_files=[ "res://.import/Stream01.wav-e19d7b7a6a552a8e100d61059727b7a9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

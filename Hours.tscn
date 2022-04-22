@@ -35,4 +35,5 @@ autostart = true
 
 [connection signal="sleep_time" from="." to="ColorRect/Label" method="_on_Hours_sleep_time"]
 [connection signal="next_day" from="ColorRect/Label" to="." method="_on_Label_next_day"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer" to="ColorRect/Label" method="_on_Timer_timeout"]

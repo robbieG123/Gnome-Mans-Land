@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Annie.mp3-66590e74bf7edec3f0e319a5667a6ced.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Annie.mp3"
+dest_files=[ "res://.import/Annie.mp3-66590e74bf7edec3f0e319a5667a6ced.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

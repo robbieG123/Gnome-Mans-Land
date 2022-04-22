@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AmbientNatureStormRainThunder02.wav-ca5cb74900397b9a8a88f45a3729728d.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Nature Sounds Pack/Ambient/AmbientNatureStormRainThunder02.wav"
+dest_files=[ "res://.import/AmbientNatureStormRainThunder02.wav-ca5cb74900397b9a8a88f45a3729728d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

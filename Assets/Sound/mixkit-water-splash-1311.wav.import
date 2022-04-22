@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-water-splash-1311.wav-80ff0b1625f81a065239989e998e8a88.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/mixkit-water-splash-1311.wav"
+dest_files=[ "res://.import/mixkit-water-splash-1311.wav-80ff0b1625f81a065239989e998e8a88.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

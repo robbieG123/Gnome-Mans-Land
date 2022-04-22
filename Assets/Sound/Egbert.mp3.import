@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Egbert.mp3-002c0b3088b9d854381d7245482d6621.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Egbert.mp3"
+dest_files=[ "res://.import/Egbert.mp3-002c0b3088b9d854381d7245482d6621.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

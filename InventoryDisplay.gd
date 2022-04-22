@@ -3,13 +3,6 @@ extends GridContainer
 var inventory = preload("res://Inventory.tres")
 var allItems = []
 
-
-
-
-
-
-
-
 func _ready():
 	var path = "res://Items/ItemLoc/"
 	var dir = Directory.new()
@@ -39,6 +32,7 @@ func update_inventory_slot_display(item_index):
 	inventorySlotDisplay.display_item(item)
 	
 func _on_items_changed(indexes):
+	$InventoryMove.play()
 	for item_index in indexes:
 		update_inventory_slot_display(item_index)
 
@@ -78,6 +72,9 @@ func _on_InventoryContainer_edit_inventory(item, editType):
 				elif (item == "Tomato"):
 					print ("Tomato")
 					inventory.items[t] = preload("res://Items/ItemLoc/Tomato.tres")
+				elif (item == "Egg"):
+					print ("Egg add")
+					inventory.items[t] = preload("res://Items/ItemLoc/Egg.tres")
 				update_inventory_display();
 				return
 			t = t+1

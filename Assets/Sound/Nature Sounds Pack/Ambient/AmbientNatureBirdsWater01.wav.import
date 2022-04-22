@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AmbientNatureBirdsWater01.wav-e6c1b266128dbb945c2054fc4b04cd74.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Nature Sounds Pack/Ambient/AmbientNatureBirdsWater01.wav"
+dest_files=[ "res://.import/AmbientNatureBirdsWater01.wav-e6c1b266128dbb945c2054fc4b04cd74.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
