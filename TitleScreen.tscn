@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Minecraft.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ControlsScreen.gd" type="Script" id=2]
+[ext_resource path="res://credits.gd" type="Script" id=2]
 [ext_resource path="res://TitleScreen.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -35,6 +35,20 @@ bg_color = Color( 0.258824, 0.611765, 0.694118, 1 )
 bg_color = Color( 0.313726, 0.772549, 0.878431, 1 )
 
 [sub_resource type="Theme" id=7]
+
+[sub_resource type="GDScript" id=16]
+script/source = "extends ColorRect
+
+func _ready():
+	visible = false
+
+func _on_Controls_pressed():
+	visible = true
+
+
+func _on_Button_pressed():
+	visible = false
+"
 
 [sub_resource type="DynamicFont" id=15]
 font_data = ExtResource( 1 )
@@ -99,7 +113,7 @@ custom_fonts/font = SubResource( 1 )
 text = "New Game"
 align = 1
 
-[node name="LoadGame" type="Button" parent="HomeScreen"]
+[node name="Credits" type="Button" parent="HomeScreen"]
 margin_left = 660.0
 margin_top = 1000.0
 margin_right = 3360.0
@@ -108,14 +122,14 @@ custom_styles/hover = SubResource( 10 )
 custom_styles/pressed = SubResource( 11 )
 custom_styles/normal = SubResource( 3 )
 
-[node name="Label" type="Label" parent="HomeScreen/LoadGame"]
+[node name="Label" type="Label" parent="HomeScreen/Credits"]
 margin_left = 268.0
 margin_top = 56.0
 margin_right = 414.0
 margin_bottom = 72.0
 rect_scale = Vector2( 15, 15 )
 custom_fonts/font = SubResource( 1 )
-text = "Load Game"
+text = "Credits"
 align = 1
 
 [node name="Controls" type="Button" parent="HomeScreen"]
@@ -144,7 +158,7 @@ margin_top = -698.0
 margin_right = 2400.0
 margin_bottom = 1070.0
 color = Color( 0.878431, 0.580392, 0.313726, 1 )
-script = ExtResource( 2 )
+script = SubResource( 16 )
 
 [node name="Label" type="Label" parent="ControlsScreen"]
 margin_left = 346.0
@@ -173,6 +187,42 @@ custom_styles/pressed = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
 text = "BACK"
 
+[node name="CreditsScreen" type="ColorRect" parent="."]
+margin_left = -1600.0
+margin_top = -698.0
+margin_right = 2400.0
+margin_bottom = 1070.0
+color = Color( 0.878431, 0.580392, 0.313726, 1 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="CreditsScreen"]
+margin_left = 747.0
+margin_top = 376.0
+margin_right = 1014.0
+margin_bottom = 487.0
+rect_scale = Vector2( 10, 10 )
+custom_fonts/font = SubResource( 1 )
+text = "Audio
+Nature Sounds Pack - Antoinemax
+Woodland Fantasy - Matthew Pablo
+Medieval - Miguel Herrero
+Water Sound Effect - mixkit.co"
+align = 1
+
+[node name="Button" type="Button" parent="CreditsScreen"]
+margin_left = 84.0
+margin_top = 70.0
+margin_right = 135.0
+margin_bottom = 70.0
+rect_scale = Vector2( 15, 15 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "BACK"
+
 [connection signal="pressed" from="HomeScreen/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="HomeScreen/Credits" to="CreditsScreen" method="_on_Credits_pressed"]
 [connection signal="pressed" from="HomeScreen/Controls" to="ControlsScreen" method="_on_Controls_pressed"]
 [connection signal="pressed" from="ControlsScreen/Button" to="ControlsScreen" method="_on_Button_pressed"]
+[connection signal="pressed" from="CreditsScreen/Button" to="CreditsScreen" method="_on_Button_pressed"]
