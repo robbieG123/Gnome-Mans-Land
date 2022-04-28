@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Harvest.mp3-480da526f50d23f0ece9f7ccc8b3a179.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Harvest.mp3"
+dest_files=[ "res://.import/Harvest.mp3-480da526f50d23f0ece9f7ccc8b3a179.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

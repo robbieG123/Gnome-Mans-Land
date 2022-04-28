@@ -10,4 +10,4 @@ func _ready():
 	
 func _button_pressed():
 	emit_signal("sell_item")
-	print ("sold!")
+	$SellAudio.play()

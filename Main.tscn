@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HomeMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://TitleScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://OpeningCutscene.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -18,6 +19,9 @@ z_index = 1
 
 [node name="TitleScreen" parent="." instance=ExtResource( 4 )]
 
+[node name="OpeningCutscene" parent="." instance=ExtResource( 5 )]
+visible = false
+
 [connection signal="pick_up" from="HomeMap" to="Player" method="_on_HomeMap_pick_up"]
 [connection signal="remove_seed" from="HomeMap" to="Player" method="_on_HomeMap_remove_seed"]
 [connection signal="bridge" from="Player" to="HomeMap" method="_on_Player_bridge"]
@@ -31,3 +35,4 @@ z_index = 1
 [connection signal="speak" from="Player" to="HomeMap" method="_on_Player_speak"]
 [connection signal="water" from="Player" to="HomeMap" method="_on_Player_water"]
 [connection signal="new_game" from="TitleScreen" to="." method="_on_TitleScreen_new_game"]
+[connection signal="start_game" from="OpeningCutscene" to="." method="_on_OpeningCutscene_start_game"]

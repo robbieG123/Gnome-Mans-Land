@@ -29,7 +29,7 @@ func _on_Equipped_update_inventory():
 
 
 func _on_ShopContainer_buy_item(item):
-	if current_coins - item.price > 0:
+	if current_coins - item.price >= 0:
 		emit_signal("edit_coins", item.price, "remove")
 		emit_signal("edit_inventory", item.name, "add")
 		current_coins -= item.price

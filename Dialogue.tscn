@@ -29,7 +29,7 @@ margin_right = 501.0
 margin_bottom = 97.0
 rect_scale = Vector2( 2, 2 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "Lets fuckin shag eh"
+text = "Text"
 script = ExtResource( 3 )
 
 [connection signal="speak" from="." to="Dialogue" method="_on_DialogueBox_speak"]

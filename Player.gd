@@ -26,6 +26,11 @@ var annieQuest = 0
 var finkleQuest = 0
 var test = true
 
+func _ready():
+	$Equipped.visible = true
+	$CollisionShape2D.visible = true
+	#$Camera2D.visible = true
+
 func _physics_process(delta):
 	var sprite = $AnimatedSprite;
 	sprite.playing = true
@@ -85,9 +90,9 @@ func _physics_process(delta):
 		for index in get_slide_count():
 			var collision = get_slide_collision(index)
 			var map = collision.collider.name
-			print (map)
+			#print (map)
 			if Input.is_action_just_pressed("interact"):
-				print ("interact")
+				pass
 			if Input.is_action_just_pressed("interact") && map == "HomeBody":
 				position.x = home_x;
 				position.y = home_y;
@@ -147,9 +152,9 @@ func _physics_process(delta):
 					emit_signal('speak', 'Annie', annieQuest)
 					annieQuest = 6
 				elif annieQuest == 6:
-					if $Camera2D/Coins/CoinsLabel.coins > 15:
+					if $Camera2D/Coins/CoinsLabel.coins > 200:
 						emit_signal('speak', 'Annie', 7)
-						$Camera2D/Coins/CoinsLabel.coins -= 15
+						$Camera2D/Coins/CoinsLabel.coins -= 200
 						$Camera2D/Coins/CoinsLabel.update_coins()
 						emit_signal('bridge')
 						annieQuest = 8
@@ -224,6 +229,8 @@ func _on_Equipped_scythe():
 	var x = pos[0];
 	var y = pos[1];
 	emit_signal("scythe", x, y);
+	if $Audio/Harvest.playing == false:
+			$Audio/Harvest.play()
 
 
 func _on_HomeMap_pick_up(plant):

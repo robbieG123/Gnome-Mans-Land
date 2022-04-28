@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PlayerSaleItem.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sound/Coins2.mp3" type="AudioStream" id=2]
 [ext_resource path="res://SellButton.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Minecraft.ttf" type="DynamicFontData" id=4]
 
@@ -44,8 +45,12 @@ text = "
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_left = 368.0
 margin_top = 45.0
-margin_right = 408.0
-margin_bottom = 85.0
+margin_right = 378.0
+margin_bottom = 55.0
+rect_scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 3 )
+
+[node name="SellAudio" type="AudioStreamPlayer" parent="TextureButton"]
+stream = ExtResource( 2 )
 
 [connection signal="sell_item" from="TextureButton" to="." method="_on_TextureButton_sell_item"]

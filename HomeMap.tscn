@@ -562,6 +562,7 @@ shape = SubResource( 32 )
 [node name="PlantedPlants" type="TileMap" parent="."]
 tile_set = SubResource( 14 )
 format = 1
+tile_data = PoolIntArray( 983062, 5, 0 )
 script = ExtResource( 9 )
 
 [node name="Water" type="TileMap" parent="."]

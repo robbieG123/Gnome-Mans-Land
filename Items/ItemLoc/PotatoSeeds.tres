@@ -9,4 +9,4 @@ name = "PotatoSeeds"
 texture = ExtResource( 2 )
 type = "Seed"
 quantity = 1
-price = 3
+price = 5

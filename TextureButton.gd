@@ -10,3 +10,4 @@ func _ready():
 	
 func _button_pressed():
 	emit_signal("buy_item")
+	$BuyAudio.play()

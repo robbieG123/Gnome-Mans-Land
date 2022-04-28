@@ -54,6 +54,7 @@ func _on_Player_next_day(bed):
 func _on_Player_scythe(pos_x, pos_y):
 	var tile_index = get_cell(pos_x, pos_y);
 	if (tile_index == plowedTile || tile_index == wetPlowedTile):
+		print ("scythe 2")
 		emit_signal("harvest_map", pos_x, pos_y);
 
 

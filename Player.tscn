@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Assets/Characters/nobby/Gnome2Side3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Characters/nobby/Gnome2Right1.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://Assets/Sound/Annie.mp3" type="AudioStream" id=32]
 [ext_resource path="res://Assets/Sound/Finkle.mp3" type="AudioStream" id=33]
 [ext_resource path="res://Assets/Sound/Barry.mp3" type="AudioStream" id=34]
+[ext_resource path="res://Assets/Sound/Harvest.mp3" type="AudioStream" id=35]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -84,6 +85,7 @@ frames = SubResource( 1 )
 animation = "down"
 
 [node name="Equipped" type="Sprite" parent="."]
+visible = false
 position = Vector2( -13.6364, 36.3637 )
 rotation = -1.5708
 scale = Vector2( 0.968396, 0.977274 )
@@ -103,6 +105,7 @@ margin_bottom = 1747.99
 rect_scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -11.3636, 6.81816 )
 rotation = -0.0104289
 z_as_relative = false
@@ -139,7 +142,6 @@ position = Vector2( 1252.27, -752.273 )
 scale = Vector2( 1.5, 1.5 )
 
 [node name="CoverCamera" type="ColorRect" parent="Camera2D"]
-visible = false
 margin_left = -1893.18
 margin_top = -1525.0
 margin_right = 1599.82
@@ -170,7 +172,6 @@ autowrap = true
 script = ExtResource( 22 )
 
 [node name="ShopContainer" parent="Camera2D" instance=ExtResource( 23 )]
-visible = false
 margin_left = -1143.18
 margin_top = -729.545
 margin_right = -1143.18
@@ -226,6 +227,9 @@ autoplay = true
 [node name="Planting" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource( 5 )
 volume_db = -9.197
+
+[node name="Harvest" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 35 )
 
 [connection signal="next_day" from="." to="Camera2D/Day" method="_on_Player_next_day"]
 [connection signal="next_day" from="." to="Camera2D/Hours" method="_on_Player_next_day"]
