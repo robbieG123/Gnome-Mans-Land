@@ -20,11 +20,11 @@ var velocity = Vector2()
 var speed
 var home_x = (100)
 var home_y = (100)
-var barryQuest = 19
+var barryQuest = 0
 var egbertQuest = 0
 var annieQuest = 0
 var finkleQuest = 0
-var test = true
+var test = false
 
 func _ready():
 	$Equipped.visible = true
