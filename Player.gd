@@ -25,6 +25,7 @@ var egbertQuest = 0
 var annieQuest = 0
 var finkleQuest = 0
 var test = false
+var shopOpen = false
 
 func _ready():
 	$Equipped.visible = true
@@ -72,9 +73,6 @@ func _physics_process(delta):
 		if $Audio/Walk.playing == false:
 			$Audio/Walk.play()
 			
-		
-	if Input.is_action_just_pressed("interact") && shop.visible == true:
-		shop.visible = false	
 
 		
 	if Input.is_action_pressed("sprint"):
@@ -98,11 +96,16 @@ func _physics_process(delta):
 				position.y = home_y;
 				emit_signal("next_day", "yes");
 			if Input.is_action_just_pressed("interact"):
-				if shop.visible == true:
-					shop.visible = false
-				elif map == "ShopBody":
-					shop.update_sale()
-					shop.visible = true
+				if map == "ShopBody":
+					if shopOpen == true:
+						shop.visible = false
+						shopOpen = false
+					elif shopOpen == false:
+						print ("open")
+						shop.update_sale()
+						shop.visible = true
+						shopOpen = true
+						
 			if Input.is_action_just_pressed("interact") && map == "Egg":
 				$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'add')
 				emit_signal('remove_egg')	
