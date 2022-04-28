@@ -27,7 +27,7 @@ func _on_Player_speak(character, quest):
 			speech = "This is where your mum and dad grew up. They met and fell in love here, then had you and decided to move away to a human's garden for a more peaceful life."
 			repeat = true
 		elif quest == 3:
-			speech = "So, enough backstory. Guess you I'll need to teach you how to farm!"
+			speech = "So, enough backstory. Guess I'll need to teach you how to farm!"
 			repeat = true
 		elif quest == 4:
 			speech = "First, to equip an item. Press Tab to open your inventory then drag and drop your desired item to equip into the top left box. Start by equipping your hoe"
@@ -73,11 +73,15 @@ func _on_Player_speak(character, quest):
 			speech = "If you want to learn more about gnome lore I recommend you speak to Finkle. He's the oldest out of all of us and has remembered countless stories of days past."
 			repeat = true
 		elif quest == 19:
-			speech = "I have another farming challenge for you. Bring me 50 of each crop and I'll reward you handsomely."
-	
+			speech = "I have another farming challenge for you. If you can bring me 50 of each crop I'll be able to give you something special"
+		elif quest == 20:
+			speech = "You actually did it? Jesus H Gnomes, you're a bloody good farmer. Ummm I'm sorry I don't actually have anything for you..."
+			repeat = true
+		elif quest == 21:
+			speech = "I didn't think you'd actually do it... Maybe you should just keep farming and someone will come along and get you something"
 	elif character == 'Egbert':
 		if quest == 0:
-			speech = "Hi I'm Egbert. But my friends call me eggy. You should stay close to me, I'm kind of the Alpha round these parts."
+			speech = "Hi I'm Egbert. But my friends call me eggy. You should stay close to me, I'm kind of the Alpha round these parts. Oh yeah... Barry's looking for you"
 		elif quest == 1:
 			speech = "You don't happen to have seen an egg lying about somewhere? I really need it and I can't find it anywhere"
 			repeat = true

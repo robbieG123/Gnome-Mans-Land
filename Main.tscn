@@ -20,7 +20,6 @@ z_index = 1
 [node name="TitleScreen" parent="." instance=ExtResource( 4 )]
 
 [node name="OpeningCutscene" parent="." instance=ExtResource( 5 )]
-visible = false
 
 [connection signal="pick_up" from="HomeMap" to="Player" method="_on_HomeMap_pick_up"]
 [connection signal="remove_seed" from="HomeMap" to="Player" method="_on_HomeMap_remove_seed"]

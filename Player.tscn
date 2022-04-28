@@ -222,7 +222,6 @@ volume_db = -21.224
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 29 )
 volume_db = -27.592
-autoplay = true
 
 [node name="Planting" type="AudioStreamPlayer" parent="Audio"]
 stream = SubResource( 5 )

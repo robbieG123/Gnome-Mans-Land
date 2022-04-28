@@ -8,7 +8,7 @@ func _ready():
 		$Player.visible = false
 		$TitleScreen.visible = false
 		$HomeMap.visible = false
-
+		
 		$Player/Audio/Music.playing = false
 		$Player/Camera2D/Hours/Timer.stop()
 		$TitleScreen/Camera2D.current = false
@@ -31,7 +31,6 @@ func _on_TitleScreen_new_game():
 	$HomeMap.visible = true
 	$Player/Camera2D.current = true
 	$OpeningCutscene/Song.playing = false
-	
 	$HomeMap/Node2D/Path1/CharacterFollower2D.offset = 0
 	$HomeMap/Node2D/Path2/CharacterFollower2D.offset = 0
 	$HomeMap/Node2D/Path3/CharacterFollower2D.offset = 0

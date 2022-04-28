@@ -20,7 +20,7 @@ var velocity = Vector2()
 var speed
 var home_x = (100)
 var home_y = (100)
-var barryQuest = 0
+var barryQuest = 19
 var egbertQuest = 0
 var annieQuest = 0
 var finkleQuest = 0
@@ -121,6 +121,12 @@ func _physics_process(delta):
 				elif barryQuest == 0:
 					emit_signal('speak', 'Barry', barryQuest)
 					barryQuest = 4
+				elif barryQuest == 19:
+					if (inventory._check_inventory("Carrot", 50) && inventory._check_inventory("Potato", 50) && inventory._check_inventory("Tomato", 50)) || test == true:
+						barryQuest = 20
+						emit_signal('speak', 'Barry', barryQuest)
+					else:
+						emit_signal('speak', 'Barry', barryQuest)
 				else:
 					emit_signal('speak', 'Barry', barryQuest)
 				$Audio/Barry.play()
@@ -145,6 +151,7 @@ func _physics_process(delta):
 				
 				
 			if Input.is_action_just_pressed("interact") && map == "Annie": #Annie Quest Checker
+				print (annieQuest)
 				if annieQuest == 0:
 					emit_signal('speak', 'Annie', annieQuest)
 					annieQuest = 1
