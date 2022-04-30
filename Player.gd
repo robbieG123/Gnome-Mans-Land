@@ -26,6 +26,7 @@ var annieQuest = 0
 var finkleQuest = 0
 var test = false
 var shopOpen = false
+var state = 'idle'
 
 func _ready():
 	$Equipped.visible = true
@@ -40,17 +41,22 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("move_right"):
 		velocity.x = speed
+		state = 'walking'
 	elif Input.is_action_pressed("move_left"):
 		velocity.x = -speed
+		state = 'walking'
 	else: 
 		velocity.x = 0	
 			
 	if Input.is_action_pressed("move_down"):
 		velocity.y = speed
+		state = 'walking'
 	elif Input.is_action_pressed("move_up"):
 		velocity.y = -speed
+		state = 'walking'
 	else:
 		velocity.y = 0
+		state = 'idle'
 		
 	if Input.is_action_pressed("move_down"):
 		sprite.animation = "down"
@@ -111,82 +117,94 @@ func _physics_process(delta):
 				emit_signal('remove_egg')	
 					#NPC Interactions
 			if Input.is_action_just_pressed("interact") && map == "Barry": #Barry Quest Checker
-				if barryQuest == 4 && inventory._check_inventory("Carrot", 8):
-					barryQuest = 10
-					emit_signal('speak', 'Barry', barryQuest)
-					barryQuest = 12
-				elif barryQuest == 12 && inventory._check_inventory("Carrot", 5) && inventory._check_inventory("Potato", 5) && inventory._check_inventory("Tomato", 5):
-					barryQuest = 13
-					emit_signal('speak', 'Barry', barryQuest)
-					barryQuest = 19
-				elif barryQuest == 4:
-					emit_signal('speak', 'Barry', barryQuest)
-				elif barryQuest == 0:
-					emit_signal('speak', 'Barry', barryQuest)
-					barryQuest = 4
-				elif barryQuest == 19:
-					if (inventory._check_inventory("Carrot", 50) && inventory._check_inventory("Potato", 50) && inventory._check_inventory("Tomato", 50)) || test == true:
-						barryQuest = 20
+				if $Camera2D/DialogueBox.is_visible():
+					pass
+				else:
+					if barryQuest == 4 && inventory._check_inventory("Carrot", 8):
+						barryQuest = 10
 						emit_signal('speak', 'Barry', barryQuest)
+						barryQuest = 12
+					elif barryQuest == 12 && inventory._check_inventory("Carrot", 5) && inventory._check_inventory("Potato", 5) && inventory._check_inventory("Tomato", 5):
+						barryQuest = 13
+						emit_signal('speak', 'Barry', barryQuest)
+						barryQuest = 19
+					elif barryQuest == 4:
+						emit_signal('speak', 'Barry', barryQuest)
+					elif barryQuest == 0:
+						emit_signal('speak', 'Barry', barryQuest)
+						barryQuest = 4
+					elif barryQuest == 19:
+						if (inventory._check_inventory("Carrot", 50) && inventory._check_inventory("Potato", 50) && inventory._check_inventory("Tomato", 50)) || test == true:
+							barryQuest = 20
+							emit_signal('speak', 'Barry', barryQuest)
+						else:
+							emit_signal('speak', 'Barry', barryQuest)
 					else:
 						emit_signal('speak', 'Barry', barryQuest)
-				else:
-					emit_signal('speak', 'Barry', barryQuest)
-				$Audio/Barry.play()
+					$Audio/Barry.play()
 				
 			if Input.is_action_just_pressed("interact") && map == "Egbert": #Egbert Quest Checker
-				if egbertQuest == 0:
-					emit_signal('speak', 'Egbert', egbertQuest)
-					egbertQuest = 1
-				elif egbertQuest == 1:
-					emit_signal('speak', 'Egbert', egbertQuest)
-					egbertQuest = 3
-				elif egbertQuest == 3:
-					if inventory._check_inventory("Egg", 1):
-						egbertQuest = 4
+				if $Camera2D/DialogueBox.is_visible():
+					pass
+				else:
+					if egbertQuest == 0:
 						emit_signal('speak', 'Egbert', egbertQuest)
-						$Camera2D/Coins/CoinsLabel.coins += 50
-						$Camera2D/Coins/CoinsLabel.update_coins()
-						$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'remove')
-					else:
+						egbertQuest = 1
+					elif egbertQuest == 1:
 						emit_signal('speak', 'Egbert', egbertQuest)
-				$Audio/Egbert.play()
+						egbertQuest = 3
+					elif egbertQuest == 3:
+						if inventory._check_inventory("Egg", 1):
+							egbertQuest = 4
+							emit_signal('speak', 'Egbert', egbertQuest)
+							$Camera2D/Coins/CoinsLabel.coins += 50
+							$Camera2D/Coins/CoinsLabel.update_coins()
+							$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'remove')
+						else:
+							emit_signal('speak', 'Egbert', egbertQuest)
+					$Audio/Egbert.play()
 				
 				
 			if Input.is_action_just_pressed("interact") && map == "Annie": #Annie Quest Checker
-				print (annieQuest)
-				if annieQuest == 0:
-					emit_signal('speak', 'Annie', annieQuest)
-					annieQuest = 1
-				elif annieQuest == 1:
-					emit_signal('speak', 'Annie', annieQuest)
-					annieQuest = 6
-				elif annieQuest == 6:
-					if $Camera2D/Coins/CoinsLabel.coins > 200:
-						emit_signal('speak', 'Annie', 7)
-						$Camera2D/Coins/CoinsLabel.coins -= 200
-						$Camera2D/Coins/CoinsLabel.update_coins()
-						emit_signal('bridge')
-						annieQuest = 8
-					else:
+				if $Camera2D/DialogueBox.is_visible():
+					pass
+				else:
+					print (annieQuest)
+					if annieQuest == 0:
 						emit_signal('speak', 'Annie', annieQuest)
-				$Audio/Annie.play()
+						annieQuest = 1
+					elif annieQuest == 1:
+						emit_signal('speak', 'Annie', annieQuest)
+						annieQuest = 6
+					elif annieQuest == 6:
+						if $Camera2D/Coins/CoinsLabel.coins > 200:
+							emit_signal('speak', 'Annie', 7)
+							$Camera2D/Coins/CoinsLabel.coins -= 200
+							$Camera2D/Coins/CoinsLabel.update_coins()
+							emit_signal('bridge')
+							annieQuest = 8
+						else:
+							emit_signal('speak', 'Annie', annieQuest)
+					$Audio/Annie.play()
 				
 			if Input.is_action_just_pressed("interact") && map == "Finkle": #Annie Quest Checker
-				if finkleQuest == 0:
-					emit_signal('speak', 'Finkle', finkleQuest)
-					finkleQuest = 2
-				elif finkleQuest == 2:
-					emit_signal('speak', 'Finkle', finkleQuest)
-					finkleQuest = 8
-				elif finkleQuest == 8:
-					emit_signal('speak', 'Finkle', finkleQuest)
-					finkleQuest = 14
-				elif finkleQuest == 14:
-					emit_signal('speak', 'Finkle', finkleQuest)
+				if $Camera2D/DialogueBox.is_visible():
+					pass
 				else:
-					emit_signal('speak', 'Finkle', finkleQuest)
-				$Audio/Finkle.play()
+					if finkleQuest == 0:
+						emit_signal('speak', 'Finkle', finkleQuest)
+						finkleQuest = 2
+					elif finkleQuest == 2:
+						emit_signal('speak', 'Finkle', finkleQuest)
+						finkleQuest = 8
+					elif finkleQuest == 8:
+						emit_signal('speak', 'Finkle', finkleQuest)
+						finkleQuest = 14
+					elif finkleQuest == 14:
+						emit_signal('speak', 'Finkle', finkleQuest)
+					else:
+						emit_signal('speak', 'Finkle', finkleQuest)
+					$Audio/Finkle.play()
 						
 				
 			

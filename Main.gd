@@ -1,7 +1,7 @@
 extends Node
 
 var day = 1;
-var test = true
+var test = false
 
 func _ready():
 	if test == false:
