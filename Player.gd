@@ -157,8 +157,7 @@ func _physics_process(delta):
 						if inventory._check_inventory("Egg", 1):
 							egbertQuest = 4
 							emit_signal('speak', 'Egbert', egbertQuest)
-							$Camera2D/Coins/CoinsLabel.coins += 50
-							$Camera2D/Coins/CoinsLabel.update_coins()
+							_update_coins(50, "add")
 							$Inventory/PlayerInventory/CenterContainer/InventoryDisplay._on_InventoryContainer_edit_inventory('Egg', 'remove')
 						else:
 							emit_signal('speak', 'Egbert', egbertQuest)
@@ -177,10 +176,9 @@ func _physics_process(delta):
 						emit_signal('speak', 'Annie', annieQuest)
 						annieQuest = 6
 					elif annieQuest == 6:
-						if $Camera2D/Coins/CoinsLabel.coins > 200:
+						if $Camera2D/Coins/CoinsLabel.coins >= 200:
 							emit_signal('speak', 'Annie', 7)
-							$Camera2D/Coins/CoinsLabel.coins -= 200
-							$Camera2D/Coins/CoinsLabel.update_coins()
+							_update_coins(200, "remove")
 							emit_signal('bridge')
 							annieQuest = 8
 						else:
@@ -210,7 +208,13 @@ func _physics_process(delta):
 			
 	
 
-
+func _update_coins(money, type):
+	if type == "add":
+		$Inventory/PlayerInventory._add_coins(money)
+		$Camera2D/Coins/CoinsLabel._on_PlayerInventory_edit_coins(money, "add")
+	else:
+		$Inventory/PlayerInventory._remove_coins(money)
+		$Camera2D/Coins/CoinsLabel._on_PlayerInventory_edit_coins(money, "remove")
 
 func _get_position():
 	var x = position.x - 50;

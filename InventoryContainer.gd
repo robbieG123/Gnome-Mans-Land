@@ -27,6 +27,11 @@ func _on_Player_pick_up(plant):
 func _on_Equipped_update_inventory():
 	emit_signal("update_inventory")
 
+func _add_coins(money):
+	current_coins += money
+	
+func _remove_coins(money):
+	current_coins -= money
 
 func _on_ShopContainer_buy_item(item):
 	if current_coins - item.price >= 0:
