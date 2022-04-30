@@ -30,7 +30,7 @@ uppercase = true
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 7.0
 autostart = true
 
 [connection signal="sleep_time" from="." to="ColorRect/Label" method="_on_Hours_sleep_time"]
